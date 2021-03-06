@@ -19,13 +19,13 @@ public final class MemoryCache<Key: Hashable, Value> {
 
 extension MemoryCache: Cache {
 
-    func insert(_ value: Value, forKey key: Key) {
+    public func insert(_ value: Value, forKey key: Key) {
         let date = makeExpirationDate()
         let entry = Entry(value: value, expirationDate: date)
         cache.setObject(entry, forKey: WrappedKey(key))
     }
 
-    func value(forKey key: Key) -> Value? {
+    public func value(forKey key: Key) -> Value? {
         guard let entry = cache.object(forKey: WrappedKey(key)) else {
             return nil
         }
@@ -38,7 +38,7 @@ extension MemoryCache: Cache {
         return entry.value
     }
 
-    func removeValue(forKey key: Key) {
+    public func removeValue(forKey key: Key) {
         cache.removeObject(forKey: WrappedKey(key))
     }
 

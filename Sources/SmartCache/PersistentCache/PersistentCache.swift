@@ -15,12 +15,12 @@ public final class PersistentCache<Key: FilenameConvertible, Value: PersistentCa
 
 extension PersistentCache: Cache {
 
-    func insert(_ value: Value, forKey key: Key) throws {
+    public func insert(_ value: Value, forKey key: Key) throws {
         let url = fileURL(forKey: key)
         try value.cacheData().write(to: url)
     }
 
-    func value(forKey key: Key) throws -> Value? {
+    public func value(forKey key: Key) throws -> Value? {
         let url = fileURL(forKey: key)
         guard FileManager.default.fileExists(atPath: url.path) else {
             return nil
@@ -29,7 +29,7 @@ extension PersistentCache: Cache {
         return try Value.init(cacheData: data)
     }
 
-    func removeValue(forKey key: Key) throws {
+    public func removeValue(forKey key: Key) throws {
         let url = fileURL(forKey: key)
         try FileManager.default.removeItem(at: url)
     }

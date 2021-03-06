@@ -19,13 +19,13 @@ public final class SmartCache<Key: Hashable & FilenameConvertible, Value: Persis
 
 extension SmartCache: Cache {
 
-    func insert(_ value: Value, forKey key: Key) throws {
+    public func insert(_ value: Value, forKey key: Key) throws {
         memoryCache[key] = value
         persistentCache[key] = value
 
     }
 
-    func value(forKey key: Key) throws -> Value? {
+    public func value(forKey key: Key) throws -> Value? {
         if let memoryEntry = memoryCache[key] {
             return memoryEntry
         } else if let persistentEntry = persistentCache[key] {
@@ -36,7 +36,7 @@ extension SmartCache: Cache {
         }
     }
 
-    func removeValue(forKey key: Key) throws {
+    public func removeValue(forKey key: Key) throws {
         memoryCache[key] = nil
         persistentCache[key] = nil
     }

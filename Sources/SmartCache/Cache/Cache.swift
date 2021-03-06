@@ -1,6 +1,6 @@
 import Foundation
 
-protocol Cache {
+public protocol Cache {
     
     associatedtype Key
     associatedtype Value
