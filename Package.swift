@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SmartCache",
+    name: "smart-cache",
     products: [
         .library(name: "SmartCache", targets: ["SmartCache"]),
     ],
