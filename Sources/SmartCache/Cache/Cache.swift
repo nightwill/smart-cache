@@ -11,7 +11,7 @@ public protocol Cache {
 
 }
 
-extension Cache {
+extension Cache where Self: AnyObject {
 
     public subscript(key: Key) -> Value? {
         get { return try? value(forKey: key) }
